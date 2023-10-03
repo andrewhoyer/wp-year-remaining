@@ -5,7 +5,7 @@
  * Plugin URI:        https://andrewhoyer.com/year-remaining
  * Description:       Outputs the percentage of time remaining in the year.
  * Version:           0.1.0
- * Author:            andrewhoyer
+ * Author:            Andrew Hoyer
  * Author URI:        https://andrewhoyer.com	
  * License:           GPL-3.0
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html#license-text
@@ -15,7 +15,7 @@
  * Requires PHP:      7.0
  */
 
-function year_remaining_generate($atts) {
+function yr_generate($atts) {
 
 	// Default timezone to UTC
 	date_default_timezone_set('UTC'); 
@@ -38,7 +38,7 @@ function year_remaining_generate($atts) {
 		// Example: 0.24657534246575 which means 24.6%
 		$percent_remaining = 1 - ($day_of_year / 365.0);
 
-		// If percent remaining is less than 0.273% of an integer, round it down and remove decimal.
+		// If percent remaining is less than 0.273 of an integer, round it down and remove decimal.
 		// Each day is 0.00273 of the year.
 
 		// Pads the percent calculation to ensure enough characters, splits on the decimal point
@@ -103,6 +103,6 @@ function year_remaining_generate($atts) {
 	return $progress_bar_str;
 }
 
-add_shortcode("year_remaining", "year_remaining_generate");
+add_shortcode("year_remaining", "yr_generate");
 
 ?>
