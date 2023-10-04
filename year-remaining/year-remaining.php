@@ -15,8 +15,32 @@
  * Requires PHP:      7.0
  */
 
-function yr_generate($atts) {
+function yr_year_remaining($atts) {
+	return yr_generate();
+}
 
+add_shortcode("year_remaining", "yr_year_remaining");
+
+/*
+	Dashboard widget
+*/
+function yr_add_dashboard_widget() {
+	wp_add_dashboard_widget(
+		'yr_dashboard',
+		'Year Remaining',
+		'yr_dashboard_widget_content'
+	);
+}
+add_action('wp_dashboard_setup', 'yr_add_dashboard_widget');
+
+function yr_dashboard_widget_content() {
+	echo yr_generate();
+}
+
+/*
+	Year Remaining progress bar
+*/
+function yr_generate() {
 	// Default timezone to UTC
 	date_default_timezone_set('UTC'); 
 
@@ -102,7 +126,5 @@ function yr_generate($atts) {
 	
 	return $progress_bar_str;
 }
-
-add_shortcode("year_remaining", "yr_generate");
 
 ?>
