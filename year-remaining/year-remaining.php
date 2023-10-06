@@ -1,21 +1,6 @@
 <?php
-
 /*
- * Plugin Name:       Year Remaining
- * Plugin URI:        https://andrewhoyer.com/year-remaining
- * Description:       Outputs the percentage of time remaining in the year.
- * Version:           0.1.0
- * Author:            Andrew Hoyer
- * Author URI:        https://andrewhoyer.com	
- * License:           GPL-3.0
- * License URI:       https://www.gnu.org/licenses/gpl-3.0.html#license-text
- * Text Domain:       year-remaining
- * Domain Path:       /languages
- * Requires at least: 5.2
- * Requires PHP:      7.0
- */
 
-/*
 	Year Remaining - Outputs the percentage of time remaining in the year.
 	Copyright (C) 2023 Andrew Hoyer
 
@@ -31,6 +16,20 @@
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+	* Plugin Name:       Year Remaining
+	* Plugin URI:        https://andrewhoyer.com/year-remaining
+	* Description:       Outputs the percentage of time remaining in the year.
+	* Version:           0.1.0
+	* Author:            Andrew Hoyer
+	* Author URI:        https://andrewhoyer.com
+	* License:           GPL-3.0
+	* License URI:       https://www.gnu.org/licenses/gpl-3.0.html#license-text
+	* Text Domain:       year-remaining
+	* Domain Path:       /languages
+	* Requires at least: 5.2
+	* Requires PHP:      7.0
+
 */
 
 function yr_year_remaining($atts) {
