@@ -20,7 +20,7 @@
 	* Plugin Name:       Year Remaining
 	* Plugin URI:        https://andrewhoyer.com/year-remaining
 	* Description:       Outputs the percentage of time remaining in the year.
-	* Version:           0.1.0
+	* Version:           0.1.1
 	* Author:            Andrew Hoyer
 	* Author URI:        https://andrewhoyer.com
 	* License:           GPL-3.0
@@ -79,12 +79,12 @@ function yr_generate() {
 		// Example: 0.24657534246575 which means 24.6%
 		$percent_remaining = 1 - ($day_of_year / 365.0);
 
-		// If percent remaining is less than 0.273 of an integer, round it down and remove decimal.
-		// Each day is 0.00273 of the year.
+		// If percent remaining is less than or equal to 0.273 of an integer, round it down and remove decimal.
+		// Each day is 0.00273 (or 0.273%) of the year.
 
 		// Pads the percent calculation to ensure enough characters, splits on the decimal point
 		// Then gets three digits representing the decimal percentage. Example: 657
-		if ((int)substr(explode('.', str_pad($percent_remaining, 8, '0',  STR_PAD_RIGHT))[1], 2, 3) < 273) {
+		if ((int)substr(explode('.', str_pad($percent_remaining, 8, '0',  STR_PAD_RIGHT))[1], 2, 3) <= 273) {
 			$percent_remaining = (int)($percent_remaining * 100);
 		} else {
 			// For all other days, round to one decimal point.
