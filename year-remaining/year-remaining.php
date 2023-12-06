@@ -132,6 +132,9 @@ function yr_generate() {
 	}
 
 	$progress_bar_str = implode('', $progress_bar_array) . ' ' . $percent_remaining . '%';
+
+	// Allow developers to filter the progress bar text.
+	$progress_bar_str = apply_filters('yr_filter_progress_bar', $progress_bar_str);
 	
 	// Can be used for debugging purposes
 	$debug = [
