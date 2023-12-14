@@ -20,7 +20,7 @@
 	* Plugin Name:       Year Remaining
 	* Plugin URI:        https://andrewhoyer.com/year-remaining
 	* Description:       Outputs the percentage of time remaining in the year.
-	* Version:           0.1.1
+	* Version:           0.2
 	* Author:            Andrew Hoyer
 	* Author URI:        https://andrewhoyer.com
 	* License:           GPL-3.0
@@ -61,23 +61,25 @@ function yr_generate() {
 	// Default timezone to UTC
 	date_default_timezone_set('UTC'); 
 
-	// Get current day of the year. Increase by 1 because range is 0 - 365.
-	$current_date = new DateTime();
-	$day_of_year = (int)$current_date->format('z') + 1; 
-	//$day_of_year = 1; // For debug purposes. Set value from 1 to 366
+	// Get current day of the year. Increase by 1 because range is 0 - 364 (365 for leap year).
+	$current_date	= new DateTime();
+	$day_of_year	= (int)$current_date->format('z') + 1;
+
+	// For leap year, add 1 to the number of days in the year
+	$days_in_year	= 365.0 + $current_date->format('L');
 
 	// A flag determining whether the percentage is an even integer.
 	$integer_percent = true;
 
 	// For edge cases, set the percentage specifically.
-	if ($day_of_year >= 365) {
+	if ($day_of_year >= $days_in_year) {
 		$percent_remaining = 0;
 	} elseif ($day_of_year == 1) {
 		$percent_remaining = 100;
 	} else {
 		// For all other dates, calculate percent. This value will be a number from 0 - 1
 		// Example: 0.24657534246575 which means 24.6%
-		$percent_remaining = 1 - ($day_of_year / 365.0);
+		$percent_remaining = 1 - ($day_of_year / $days_in_year);
 
 		// If percent remaining is less than or equal to 0.273 of an integer, round it down and remove decimal.
 		// Each day is 0.00273 (or 0.273%) of the year.
