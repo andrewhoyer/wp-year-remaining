@@ -72,21 +72,19 @@ function yr_generate() {
 	$integer_percent = true;
 
 	// For edge cases, set the percentage specifically.
-	if ($day_of_year >= $days_in_year) {
-		$percent_remaining = 0;
-	} elseif ($day_of_year == 1) {
+	if ($day_of_year == 1) {
 		$percent_remaining = 100;
 	} else {
 		// For all other dates, calculate percent. This value will be a number from 0 - 1
 		// Example: 0.24657534246575 which means 24.6%
-		$percent_remaining = 1 - ($day_of_year / $days_in_year);
+		$percent_remaining = round(1 - ($day_of_year / $days_in_year), 9);
 
 		// If percent remaining is less than or equal to 0.273 of an integer, round it down and remove decimal.
 		// Each day is 0.00273 (or 0.273%) of the year.
 
 		// Pads the percent calculation to ensure enough characters, splits on the decimal point
 		// Then gets three digits representing the decimal percentage. Example: 657
-		if ((int)substr(explode('.', str_pad($percent_remaining, 8, '0',  STR_PAD_RIGHT))[1], 2, 3) <= 273) {
+		if ((int)substr(explode('.', str_pad($percent_remaining, 8, '0',  STR_PAD_RIGHT))[1], 2, 3) < 273) {
 			$percent_remaining = (int)($percent_remaining * 100);
 		} else {
 			// For all other days, round to one decimal point.
