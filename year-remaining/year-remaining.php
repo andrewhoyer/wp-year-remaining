@@ -32,6 +32,9 @@
 
 */
 
+// Block this file from being executed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 function yr_year_remaining($atts) {
 	return yr_generate();
 }
