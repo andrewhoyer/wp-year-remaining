@@ -39,12 +39,12 @@ The plugin adds a widget to the Dashboard that displays the progress bar and per
 
 A filter can be used to modify the progress bar and percentage text before it is displayed on the screen.
 
-The name of the filter hook is ```yr_filter_progress_bar```.
+The name of the filter hook is ```year_remaining_filter_progress_bar```.
 
 Example code:
 
 ```
-add_filter('yr_filter_progress_bar', 'modify_progress_bar', 10);
+add_filter('year_remaining_filter_progress_bar', 'modify_progress_bar', 10);
 
 function modify_progress_bar($bar) {
     $bar = str_replace("░","🙁", $bar);

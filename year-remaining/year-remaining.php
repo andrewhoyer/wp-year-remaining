@@ -20,7 +20,7 @@
 	* Plugin Name:       Year Remaining
 	* Plugin URI:        https://andrewhoyer.com/year-remaining
 	* Description:       Outputs the percentage of time remaining in the year.
-	* Version:           0.2
+	* Version:           0.3
 	* Author:            Andrew Hoyer
 	* Author URI:        https://andrewhoyer.com
 	* License:           GPL-3.0
@@ -35,32 +35,32 @@
 // Block this file from being executed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function yr_year_remaining($atts) {
-	return yr_generate();
+function year_remaining_get_progress_bar($atts) {
+	return year_remaining_generate();
 }
 
-add_shortcode("year_remaining", "yr_year_remaining");
+add_shortcode("year_remaining", "year_remaining_get_progress_bar");
 
 /*
 	Dashboard widget
 */
-function yr_add_dashboard_widget() {
+function year_remaining_add_dashboard_widget() {
 	wp_add_dashboard_widget(
-		'yr_dashboard',
+		'year_remaining_dashboard',
 		'Year Remaining',
-		'yr_dashboard_widget_content'
+		'year_remaining_dashboard_widget_content'
 	);
 }
-add_action('wp_dashboard_setup', 'yr_add_dashboard_widget');
+add_action('wp_dashboard_setup', 'year_remaining_add_dashboard_widget');
 
-function yr_dashboard_widget_content() {
-	echo yr_generate();
+function year_remaining_dashboard_widget_content() {
+	echo year_remaining_generate();
 }
 
 /*
 	Year Remaining progress bar
 */
-function yr_generate() {
+function year_remaining_generate() {
 	// Default timezone to UTC
 	date_default_timezone_set('UTC'); 
 
@@ -137,7 +137,7 @@ function yr_generate() {
 	$progress_bar_str = implode('', $progress_bar_array) . ' ' . $percent_remaining . '%';
 
 	// Allow developers to filter the progress bar text.
-	$progress_bar_str = apply_filters('yr_filter_progress_bar', $progress_bar_str);
+	$progress_bar_str = apply_filters('year_remaining_filter_progress_bar', $progress_bar_str);
 	
 	// Can be used for debugging purposes
 	$debug = [

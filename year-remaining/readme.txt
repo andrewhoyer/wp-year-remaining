@@ -1,9 +1,9 @@
 === Year Remaining ===
 Contributors: andrewhoyer
-Tags: year, remaining, time, date, progress
+Tags: year, remaining, time, date, progress, calendar
 Requires at least: 5.2
-Tested up to: 6.4
-Stable tag: 0.2
+Tested up to: 6.4.2
+Stable tag: 0.3
 Requires PHP: 7.0
 Author URI: https://andrewhoyer.com/year-remaining/
 License: GPLv3 or later
@@ -27,7 +27,7 @@ The dashboard widget will be displayed automatically. Hide or show the widget as
 
 = Filter =
 
-For developers, if you would like to modify the text output, use the yr_filter_progress_bar filter to do so just before the text is written out to the page.
+For developers, if you would like to modify the text output, use the year_remaining_filter_progress_bar filter to do so just before the text is written out to the page.
 
 == Developers ==
 
@@ -46,6 +46,10 @@ There are a few ways you can help make Year Remaining better and support more de
 * Follow the project on GitHub, and become a Contributor
 
 == Changelog ==
+
+= 0.3 - Jan 28, 2024 =
+
+* Improvements based on WordPress Plugin review
 
 = 0.2 - Dec 12, 2023 =
 
