@@ -36,7 +36,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 function year_remaining_get_progress_bar($atts) {
-	return year_remaining_generate();
+	// For use in posts and pages, include allowed HTML tags
+	return wp_kses_post(year_remaining_generate());
 }
 
 add_shortcode("year_remaining", "year_remaining_get_progress_bar");
@@ -54,7 +55,8 @@ function year_remaining_add_dashboard_widget() {
 add_action('wp_dashboard_setup', 'year_remaining_add_dashboard_widget');
 
 function year_remaining_dashboard_widget_content() {
-	echo year_remaining_generate();
+	// For use in the Dashboard, do not allow any HTML
+	echo esc_html(year_remaining_generate());
 }
 
 /*
