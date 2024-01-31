@@ -63,12 +63,11 @@ function year_remaining_dashboard_widget_content() {
 	Year Remaining progress bar
 */
 function year_remaining_generate() {
-	// Default timezone to UTC
-	date_default_timezone_set('UTC'); 
+	// Get the current date, using the time zone specified in WordPress.
+	$current_date = new DateTime('now', wp_timezone());
 
 	// Get current day of the year. Increase by 1 because range is 0 - 364 (365 for leap year).
-	$current_date	= new DateTime();
-	$day_of_year	= (int)$current_date->format('z') + 1;
+	$day_of_year = (int)$current_date->format('z') + 1;
 
 	// For leap year, add 1 to the number of days in the year
 	$days_in_year	= 365.0 + $current_date->format('L');
